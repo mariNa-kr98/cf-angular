@@ -1,5 +1,5 @@
 <div>
-    <h1>From person table component</h1>
+    <!-- <h1>From person table component</h1>
     <table class="table table-bordered w-50">
         <caption>Person Details</caption>
         <tr>
@@ -17,6 +17,27 @@
           <tr>
             <td class="fw-semibold text-end">Email</td>
             <td class="ps-2">{{person.email}}</td>
+          </tr>
+    </table> -->
+
+    <h1>From person table component</h1>
+    <table class="table table-bordered w-50">
+        <caption>Person Details</caption>
+        <tr>
+            <td class="fw-semibold text-end">Firstname</td>
+            <td class="ps-2">{{personInput?.givenName}}</td>
+          </tr>
+          <tr>
+            <td class="fw-semibold text-end">Lastname</td>
+            <td class="ps-2">{{personInput?.surName}}</td>
+          </tr>
+          <tr>
+            <td class="fw-semibold text-end">Age</td>
+            <td class="ps-2">{{personInput?.age}}</td>
+          </tr>
+          <tr>
+            <td class="fw-semibold text-end">Email</td>
+            <td class="ps-2">{{personInput?.email}}</td>
           </tr>
     </table>
 </div>
