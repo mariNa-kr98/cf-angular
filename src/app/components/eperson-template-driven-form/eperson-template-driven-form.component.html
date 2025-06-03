@@ -18,8 +18,14 @@
         </mat-form-field>
         <mat-form-field>
             <mat-label>Email</mat-label>
-            <input matInput ngModel required type="email" name="email" #email="ngModel"/>
+            <input matInput ngModel required type="text" pattern="[a-zA-Z0-9\.\-]+@[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,}" name="email" #email="ngModel"/>
+            @if (email.errors && email.errors['required']){
+                <mat-error>Email is required</mat-error>
+            }
             <mat-error>Email is required</mat-error>
+            @if (email.errors && email.errors['pattern']){
+                <mat-error>Invalid email</mat-error>
+            }
         </mat-form-field>
         <mat-form-field>
             <mat-label>Education</mat-label>
@@ -34,9 +40,10 @@
     </form>
     <button 
     mat-flat-button color="primary"
-    [disabled]="eForm.invalid">
+    [disabled]="eForm.invalid" 
+    (click)="onSubmit(eForm.value)">
     Submit
     </button>
-    <button>Set value</button>
-    {{eForm.value | json}} 
+    <button (click)="onSetValue()">Set value</button>
+    <!-- {{eForm.value | json}}  -->
 </div>
