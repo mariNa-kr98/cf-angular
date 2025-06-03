@@ -1,1 +1,42 @@
-<p>eperson-template-driven-form works!</p>
+<div class="d-flex flex-column">
+    <h5>New Person From</h5>
+    <form #eForm="ngForm" class="d-flex flex-column">
+        <mat-form-field>
+            <mat-label class="mylabel">Firstname</mat-label>
+            <input matInput ngModel required type="text" name="givenName" #givenName="ngModel"/>
+            <mat-error>Firstname is required</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Lastname</mat-label>
+            <input matInput ngModel required type="text" name="surname" #surname="ngModel" />
+            <mat-error>Lastname is required</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Age</mat-label>
+            <input matInput ngModel required type="number" min= "18" max="100" name="age" #age="ngModel"/>
+            <mat-error>Age is required</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input matInput ngModel required type="email" name="email" #email="ngModel"/>
+            <mat-error>Email is required</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Education</mat-label>
+            <mat-select ngModel required name="education" #education="ngModel">
+                <mat-option value="Some college, no degree">Some college, no degree</mat-option>
+                <mat-option value="Master's degree">Master's degree</mat-option>
+                <mat-option value="Bachelor's degree">Bachelor's degree</mat-option>
+                <mat-option value="No formal education">No formal education</mat-option>
+            </mat-select>
+            <mat-error>Education is required</mat-error>
+        </mat-form-field>
+    </form>
+    <button 
+    mat-flat-button color="primary"
+    [disabled]="eForm.invalid">
+    Submit
+    </button>
+    <button>Set value</button>
+    {{eForm.value | json}} 
+</div>
