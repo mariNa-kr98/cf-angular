@@ -25,13 +25,19 @@ export class EpersonTemplateDrivenFormComponent {
 @ViewChild('eForm', {static: false}) form: NgForm | undefined;
 
 
-  onSubmit(value: EPerson){
-    console.log(value);
-    console.log(this.form);
-    console.log(this.form?.form.get('givenName')?.value)
-    console.log(this.form?.form.controls['surName'].value)
-    this.person.emit(value);
-  }
+  // onSubmit(value: EPerson){
+  //   console.log(value);
+  //   console.log(this.form);
+  //   console.log(this.form?.form.get('givenName')?.value)
+  //   console.log(this.form?.form.controls['surName'].value)
+  //   this.person.emit(value);
+  // }
+
+  onSubmit(value: any){
+      console.log(this.form);
+      console.log(this.form!.form.controls['surName'].value)
+      this.person.emit(value as EPerson);
+    }
 
   onSetValue(){
     this.form?.setValue({
@@ -41,7 +47,7 @@ export class EpersonTemplateDrivenFormComponent {
       email:"john@aueb.gr",
       education:"Bachelor's degree"
     });
-    this.form?.form.controls['givenName'].setValue("aaaaa")
+    this.form?.form.controls['givenName'].setValue("Periklis")
   }
 
 }

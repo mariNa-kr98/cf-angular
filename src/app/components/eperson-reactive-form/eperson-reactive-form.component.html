@@ -1,0 +1,41 @@
+<div class="d-flex flex-column">
+    <h5>New Person Form</h5>
+    <form [formGroup]="form" class="d-flex flex-column">
+        <mat-form-field>
+            <mat-label>Firstname</mat-label>
+            <input type="text" matInput formControlName="givenName">
+            <mat-error>Firstname is required</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Lastname</mat-label>
+            <input type="text" matInput formControlName="surName">
+            <mat-error>Lastname is required</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Age</mat-label>
+            <input type="text" matInput formControlName="age">
+            <mat-error>Age is missing or invalid</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input type="text" matInput formControlName="email">
+            <mat-error>Email is missing or invalid</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Education</mat-label>
+            <mat-select formControlName="education">
+                <mat-option value="Some college, no degree">Some college, no degree</mat-option>
+                <mat-option value="Master's Degree">Master's Degree</mat-option>
+                <mat-option value="Bachelor's Degree">Bachelor's Degree</mat-option>
+                <mat-option value="Association's Degree">Association's Degree</mat-option>
+            </mat-select>
+            <mat-error>Education is required</mat-error>
+        </mat-form-field>
+    </form>
+    <button mat-flat-button color="primary" [disabled] = "form.invalid" (click)="onSubmit(form.value)">
+        Submit
+    </button>
+    <button (click)="onSetValue()">
+        Set Value
+    </button>
+</div>
