@@ -29,14 +29,14 @@ export class EpersonTemplateDrivenFormComponent {
     console.log(value);
     console.log(this.form);
     console.log(this.form?.form.get('givenName')?.value)
-    console.log(this.form?.form.controls['surname'].value)
+    console.log(this.form?.form.controls['surName'].value)
     this.person.emit(value);
   }
 
   onSetValue(){
     this.form?.setValue({
       givenName:"John",
-      surname:"Doe",
+      surName:"Doe",
       age:30,
       email:"john@aueb.gr",
       education:"Bachelor's degree"
