@@ -79,8 +79,8 @@ passwordConfirmValidator(control: AbstractControl): {[key:string]: boolean} | nu
           this.registrationStatus = {success: true, message: "User registered"}
         },
         error: (response) => {
-          console.log("User not saved", response);
-          this.registrationStatus = {success: false, message: response.data}
+          console.log("User not saved", response.error.data.errorResponse.errmsg);
+          this.registrationStatus = {success: false, message: response.error.data.errorResponse.errmsg}
         }
       })
   }
@@ -89,7 +89,7 @@ passwordConfirmValidator(control: AbstractControl): {[key:string]: boolean} | nu
     const email = this.form.get("email")?.value;
 
     if (email){
-      // console.log("email", email);
+      console.log("email", email);
       this.userService.check_dublicate_email(email)
         .subscribe({
           next: (response) => {
