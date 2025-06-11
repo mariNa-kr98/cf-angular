@@ -23,6 +23,11 @@ import { User } from 'src/app/shared/interfaces/user';
 export class UserRegistrationComponent {
   userService = inject(UserService);
 
+  registrationStatus: {success: boolean, message: string} = {
+    success: false,
+    message: 'Not attempted yet'
+  }
+
   form = new FormGroup({
     username: new FormControl('', Validators.required),
     name: new FormControl('', Validators.required),
@@ -70,10 +75,12 @@ passwordConfirmValidator(control: AbstractControl): {[key:string]: boolean} | nu
     this.userService.registerUser(data)
       .subscribe({
         next: (response) => {
-          console.log("User saved", response)
+          console.log("User saved", response);
+          this.registrationStatus = {success: true, message: "User registered"}
         },
         error: (response) => {
-          console.log("User not saved", response)
+          console.log("User not saved", response);
+          this.registrationStatus = {success: false, message: response.data}
         }
       })
   }
@@ -97,5 +104,10 @@ passwordConfirmValidator(control: AbstractControl): {[key:string]: boolean} | nu
           }
         })
     }
+  }
+
+  registerAnother(){
+    this.form.reset()
+    this.registrationStatus = {success: false, message: "Not attempted yet"}
   }
 }
