@@ -8,6 +8,7 @@ import { AbstractControl, FormControl,
     Validators
   } from '@angular/forms';
 import { UserService } from 'src/app/shared/services/user.service';
+import { User } from 'src/app/shared/interfaces/user';
 
 @Component({
   selector: 'app-user-registration',
@@ -53,8 +54,28 @@ passwordConfirmValidator(control: AbstractControl): {[key:string]: boolean} | nu
 }
 
   onSubmit(){
-    const data = this.form.value;
+    //const data = this.form.value as User;
+    const data: User = {
+      'username': this.form.get('username')?.value || '',
+      'password': this.form.get('password')?.value || '',
+      'name': this.form.get('name')?.value || '',
+      'surname': this.form.get('surname')?.value || '',
+      'email': this.form.get('email')?.value || '',
+      'address': {
+        'area': this.form.get('area')?.value || '',
+        'road': this.form.get('road')?.value || ''
+      }
+    }
     console.log(data);
+    this.userService.registerUser(data)
+      .subscribe({
+        next: (response) => {
+          console.log("User saved", response)
+        },
+        error: (response) => {
+          console.log("User not saved", response)
+        }
+      })
   }
 
   check_dublicate_email(){
