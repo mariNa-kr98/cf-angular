@@ -21,6 +21,7 @@ export class UserService {
   constructor(){
     const access_token = localStorage.getItem("access_token");
 if(access_token) {
+  console.log("Access token >>>", access_token)
   const decodedTokenSubject = jwtDecode(access_token) as unknown as LoggedInUser;
   this.user$.set({
     username: decodedTokenSubject.username,
